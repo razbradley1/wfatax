@@ -1,0 +1,30 @@
+name: tax-planner
+
+services:
+  app:
+    image: tax-planner:latest
+    container_name: tax-planner
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: bind
+        source: /DATA/AppData/tax-planner
+        target: /app/data
+    environment:
+      - DATABASE_URL=sqlite:///data/tax_planner.db
+
+x-casaos:
+  title:
+    en_us: Tax Planner
+  description:
+    en_us: Financial tax planning tool for advisors — manage households, tax returns, scenarios, Roth projections, and client letters.
+  tagline:
+    en_us: Tax planning & scenario analysis
+  icon: https://cdn-icons-png.flaticon.com/512/2921/2921222.png
+  category: Finance
+  port_map: "8000"
+  scheme: http
+  index: /
+  author: razbradley1
+  developer: razbradley1
