@@ -1,0 +1,31 @@
+name: tax-planner
+
+services:
+  tax-planner:
+    image: ghcr.io/razbradley1/wfatax/tax-planner:latest
+    container_name: tax-planner
+    restart: unless-stopped
+    ports:
+      - "9000:8000"
+    volumes:
+      - /DATA/AppData/tax-planner:/app/data
+    environment:
+      - DATABASE_URL=sqlite:///data/tax_planner.db
+      - STATIC_DIR=/app/static
+
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main: tax-planner
+  author: razbradley1
+  category: Finance
+  description:
+    en_us: Personal tax planning application for financial advisors. Includes federal and state tax calculations, scenario comparisons, Roth conversion projections, and PDF report generation.
+  developer: razbradley1
+  icon: https://cdn-icons-png.flaticon.com/512/2921/2921222.png
+  index: /
+  port_map: "9000"
+  scheme: http
+  title:
+    en_us: Tax Planner
