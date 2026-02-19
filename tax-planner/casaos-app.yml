@@ -2,7 +2,7 @@ name: tax-planner
 
 services:
   tax-planner:
-    image: ghcr.io/razbradley1/wfatax/tax-planner:latest
+    image: tax-planner:latest
     container_name: tax-planner
     restart: unless-stopped
     ports:
