@@ -148,6 +148,18 @@ def export_explainer_pdf(explainer_type: str, scenario_id: int):
 
 
 # Serve frontend static files in production
-@app.get("/")
-def root():
-    return {"message": "Tax Planner API. Frontend at http://localhost:5173"}
+static_dir = os.environ.get("STATIC_DIR")
+if static_dir and os.path.isdir(static_dir):
+    from fastapi.staticfiles import StaticFiles
+    from fastapi.responses import FileResponse
+
+    @app.get("/")
+    def serve_index():
+        return FileResponse(os.path.join(static_dir, "index.html"))
+
+    app.mount("/", StaticFiles(directory=static_dir), name="static")
+else:
+
+    @app.get("/")
+    def root():
+        return {"message": "Tax Planner API. Frontend at http://localhost:5173"}
