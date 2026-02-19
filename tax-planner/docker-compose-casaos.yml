@@ -6,7 +6,7 @@ services:
     container_name: tax-planner
     restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "9954:8000"
     volumes:
       - type: bind
         source: /DATA/AppData/tax-planner
@@ -23,7 +23,7 @@ x-casaos:
     en_us: Tax planning & scenario analysis
   icon: https://cdn-icons-png.flaticon.com/512/2921/2921222.png
   category: Finance
-  port_map: "8000"
+  port_map: "9954"
   scheme: http
   index: /
   author: razbradley1
